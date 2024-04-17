@@ -25,7 +25,8 @@
 
 #input-container {
     flex-direction: column;
-    height: 80%;
+    height: 50%;
+    justify-content: space-around;
 }
 
 #container {
@@ -45,6 +46,7 @@ html {
 h1 {
     font-weight: 50;
     font-size: 2.5rem;
+    margin: 0;
 }
 
 .gridSquare:hover {

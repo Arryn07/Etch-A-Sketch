@@ -34,20 +34,56 @@ function createGrid(squares) {
         alert("Too many squares");
     }
 
-    //adds trail on mouseout
-    gridArray.forEach((gridSquare) => {
-        gridSquare.addEventListener("mouseout", () => {
-            gridSquare.style.backgroundColor = "black";
-        })
-    })
+    createTrail();
+
 }
+
+var rainbow = document.querySelector("#rainbow");
+const gridRange = document.querySelector("#gridRange");
+
+function createTrail() {
+    //generates random RGB color
+    function random_rgba() {
+        var o = Math.round, r = Math.random, s = 255;
+        return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+    }
+
+    if (rainbow.checked) {
+        //adds rainbow trail
+        gridArray.forEach((gridSquare) => {
+        gridSquare.addEventListener("mouseout", () => {
+            var color = random_rgba();
+            gridSquare.style.backgroundColor = color;
+            })
+        })
+    } else {
+        //adds black trail
+        gridArray.forEach((gridSquare) => {
+            gridSquare.addEventListener("mouseout", () => {
+            gridSquare.style.backgroundColor = "black";
+            })
+        })
+    }
+}
+
+rainbow.addEventListener("change", createTrail);
 
 addEventListener("DOMContentLoaded", () => {
     createGrid(50); //default grid when page opens
+    //adds black trail
+    gridArray.forEach((gridSquare) => {
+        gridSquare.addEventListener("mouseout", () => {
+        gridSquare.style.backgroundColor = "black";
+            })
+        })
 });
 
-const gridRange = document.querySelector("#gridRange");
 const gridSubmit = document.querySelector("#gridSubmit");
 gridSubmit.addEventListener("click", () => {
     createGrid(gridRange.value);
 })
+
+const clear = document.querySelector("#clear");
+clear.addEventListener("click", () => {
+    createGrid(gridRange.value);
+});
