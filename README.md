@@ -1,0 +1,1 @@
+This is an Etch-A-Sketch application created for The Odin Project.
